@@ -67,11 +67,11 @@ def get_collection():
 
 @st.cache_resource
 def get_groq_client():
-    api_key = os.getenv("GROQ_API_KEY")
+    # Check Streamlit Secrets first (for cloud hosting), fallback to .env (for local testing)
+    api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
     if not api_key:
         return None
     return Groq(api_key=api_key)
-
 
 def retrieve_context(collection, query, top_k=TOP_K):
     results = collection.query(query_texts=[query], n_results=top_k)
