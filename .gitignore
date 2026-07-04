@@ -1,3 +1,7 @@
 venv/
-myenv/
+__pycache__/
+*.pyc
 .env
+chroma_store/
+chat_history.json
+.streamlit/secrets.toml
